@@ -111,14 +111,14 @@ MacroTS provides pre-trained models that you can use directly without going thro
 
 ### Downloading Pre-trained Models
 
-You can download pre-trained MacroTS models from our Hugging Face repository:
+You can download pre-trained models from our [Hugging Face repository](https://huggingface.co/bkoyuncu/MacroEconModels):
 
 ```shell
 # Create a directory for pre-trained models
 mkdir -p ${MODEL_PATH}/pretrained
 
 # Download models using the Hugging Face CLI
-huggingface-cli download bkoyuncu/mtsfm --local-dir ${MODEL_PATH}/pretrained
+huggingface-cli download bkoyuncu/MacroEconModels --local-dir ${MODEL_PATH}/pretrained
 ```
 
 ## Running Evaluation
