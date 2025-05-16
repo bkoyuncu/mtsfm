@@ -8,7 +8,7 @@ MTSFM is a specialized PyTorch-based foundation model for macroeconomic time ser
 ## 🌟 Key Features
 
 * **Specialized for Macroeconomics**: Optimized specifically for forecasting economic indicators, financial metrics, and monetary policy variables
-* **Custom Loss Functions**: Enhanced training objectives tailored for macroeconomic variables
+* **Custom Optimization**: Enhanced training objectives tailored for macroeconomic variables
 * **Adaptive Forecasting**: Handles mixed-frequency data and irregular sampling common in economic time series
 * **Uncertainty Quantification**: Provides robust probabilistic forecasts essential for economic policy decisions
 * **Zero-Shot Capabilities**: Leverages Moirai's transfer learning abilities while excelling on macroeconomic datasets
@@ -47,7 +47,7 @@ MODEL_PATH=/absolute/path/to/store/model/checkpoints
 CUSTOM_DATA_PATH=/absolute/path/to/your/datasets
 
 
-## 📔 Jupyter Notebooks
+## 📔 Getting dataset via Jupyter Notebooks
 See process_macroecon_notebook.ipynb for creating the dataset using our HuggingFace dataset
 
 
@@ -105,11 +105,35 @@ optimizer:
   weight_decay: 0.01
 ```
 
+## 📥 Using Pre-trained Models
 
+MacroTS provides pre-trained models that you can use directly without going through the training process. These models are available on the Hugging Face Hub.
 
-## 💻 Command Line Interface
-We provide a command line interface for training, evaluation, and inference. See the [cli directory](cli) for more details.
+### Downloading Pre-trained Models
+
+You can download pre-trained MacroTS models from our Hugging Face repository:
+
+```shell
+# Create a directory for pre-trained models
+mkdir -p ${MODEL_PATH}/pretrained
+
+# Download models using the Hugging Face CLI
+huggingface-cli download bkoyuncu/mtsfm --local-dir ${MODEL_PATH}/pretrained
+```
+
+## Running Evaluation
+
+To evaluate your model, run:
+
+```shell
+python -m cli.eval \
+  -cp conf/eval \
+  --config-name eval.yaml \
+  run_name=macrots_evaluation \
+  model=eval_model
+```
 
 ## 🙏 Acknowledgements
 
 MTSFM builds upon the excellent work of the [Uni2TS](https://github.com/SalesforceAIResearch/uni2ts) framework and [Moirai](https://arxiv.org/abs/2402.02592) architecture by Salesforce AI Research. We are grateful for their open-source contribution that made our specialized model possible.
+
