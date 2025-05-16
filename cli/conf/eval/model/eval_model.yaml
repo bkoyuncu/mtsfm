@@ -1,0 +1,6 @@
+_target_: uni2ts.model.moirai.MoiraiForecast.load_from_checkpoint
+checkpoint_path: "${env:MODEL_PATH}/pretrained/macrots_base.ckpt"
+num_samples: 100
+patch_size: 32
+context_length: 1152
+prediction_length: 96
