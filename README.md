@@ -48,7 +48,7 @@ CUSTOM_DATA_PATH=/absolute/path/to/your/datasets
 
 
 ## 📔 Getting dataset via Jupyter Notebooks
-See process_macroecon_notebook.ipynb for creating the dataset using our HuggingFace dataset
+See process_macroecon_notebook.ipynb for creating the dataset using our [HuggingFace Dataset](https://huggingface.co/datasets/bkoyuncu/MacroEcon):
 
 
 ## 🧑‍🔬 Training Workflow
@@ -111,7 +111,7 @@ MacroTS provides pre-trained models that you can use directly without going thro
 
 ### Downloading Pre-trained Models
 
-You can download pre-trained models from our [Hugging Face repository](https://huggingface.co/bkoyuncu/MacroEconModels):
+You can download pre-trained models from our [HuggingFace repository](https://huggingface.co/bkoyuncu/MacroEconModels):
 
 ```shell
 # Create a directory for pre-trained models
