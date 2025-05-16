@@ -1,0 +1,41 @@
+# load a pretrained checkpoint from huggingface hub
+_target_: uni2ts.model.moirai.MoiraiFinetune.load_from_checkpoint
+module_kwargs:
+  _target_: builtins.dict
+  distr_output:
+    _target_: uni2ts.distribution.MixtureOutput
+    components:
+      - _target_: uni2ts.distribution.StudentTOutput
+      - _target_: uni2ts.distribution.NormalFixedScaleOutput
+      - _target_: uni2ts.distribution.NegativeBinomialOutput
+      - _target_: uni2ts.distribution.LogNormalOutput
+  d_model: 768
+  num_layers: 12
+  patch_sizes: ${as_tuple:[8, 16, 32, 64, 128]}
+  max_seq_len: 3120
+  attn_dropout_p: 0.0
+  dropout_p: 0.0
+  scaling: true
+min_patches: 48
+min_mask_ratio: 0.015
+max_mask_ratio: 0.07
+max_dim: 52
+loss_func:
+  _target_: uni2ts.loss.packed.PackedNLLLoss
+val_metric:
+  - _target_: uni2ts.loss.packed.PackedMSELoss
+  # - _target_: uni2ts.loss.packed.PackedNRMSELoss
+    # normalize: absolute_target_squared
+lr: 1e-3
+weight_decay: 1e-1
+beta1: 0.9
+beta2: 0.98
+num_training_steps: ${mul:${trainer.max_epochs},${train_dataloader.num_batches_per_epoch}}
+num_warmup_steps: 0
+sample_per_subset: True
+subsets_id: '4'
+subsets_id_val: '5'
+rand_cov_indx: False #fixes the covariate index
+use_features: ${as_tuple:['value', 'delta_log_value']}
+checkpoint_path: "/home/batuhan-koyuncu/msfsshared/2024_koyuncu_foundation/moirai_outputs/finetune/moirai_1.0_R_base_ours_save/combine_all_split_prune_cov_merge_full/save_ckpt/moirai_1.0_R_small_saved.ckpt"
+num_samples: 10
